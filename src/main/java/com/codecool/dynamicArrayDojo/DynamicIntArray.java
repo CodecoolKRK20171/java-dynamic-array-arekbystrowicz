@@ -30,4 +30,24 @@ public class DynamicIntArray {
         return asString;
     }
 
+    public void add(int integer) {
+        if(this.isFilled()) {
+            this.addIndexes(1);
+        }
+        this.array[index++] = integer;
+    }
+
+    private boolean isFilled() {
+        return this.index == this.size;
+    }
+
+    private void addIndexes(int amount) {
+        int[] newArray = new int[this.size + amount];
+        for(int i = 0; i < this.size; i++) {
+            newArray[i] = this.array[i];
+        }
+        this.size += amount;
+        this.array = newArray;
+    }
+    
 }
