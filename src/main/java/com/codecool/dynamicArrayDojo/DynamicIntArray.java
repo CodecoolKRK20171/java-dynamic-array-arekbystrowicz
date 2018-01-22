@@ -68,4 +68,24 @@ public class DynamicIntArray {
         this.index -= counter;
     }
 
+    public void insert(int index, int integer) {
+        if(index >= this.size) {
+            this.add(integer);
+        }
+        else {
+            int[] newArray = new int[this.size+1];
+            for(int i = 0, j = 0; i < this.size+1; i++, j++) {
+                if(index == i) {
+                    newArray[j++] = integer;
+                }
+                newArray[j] = this.array[i];
+            }
+            
+            this.array = newArray;
+            this.size += 1;
+            this.index += 1;
+        }
+
+    }
+
 }
