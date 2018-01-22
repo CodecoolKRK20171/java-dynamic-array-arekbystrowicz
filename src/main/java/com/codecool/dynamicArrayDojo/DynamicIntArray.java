@@ -20,5 +20,14 @@ public class DynamicIntArray {
         this.size = size;
         this.index = 0;
     }
-    
+
+    public String toString() {
+        String asString = "";
+        for(int element : this.array) {
+            asString += " " + element;
+        }
+
+        return asString;
+    }
+
 }
