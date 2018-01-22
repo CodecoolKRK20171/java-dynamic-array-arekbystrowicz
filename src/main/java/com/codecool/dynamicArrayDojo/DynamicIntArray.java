@@ -50,33 +50,22 @@ public class DynamicIntArray {
         this.array = newArray;
     }
 
-    public boolean remove(int integer) {
-        // first occurrence of provided int
+    public void remove(int integer) throws ArrayIndexOutOfBoundsException {
         int[] newArray = new int[this.size-1];
 
-        int i = 0;
-        int j = 0;
-        boolean removed = false;
-
-        while(j < this.size-1) {
-            if(removed) {
-                newArray[j++] = this.array[i++];
+        int counter = 0;
+        for(int i = 0, j = 0; i < this.size; i++) {
+            if(this.array[i] != integer) {
+                newArray[j++] = this.array[i];
             }
             else {
-                if(this.array[i] == integer) {
-                    i++;
-                    removed = true;
-                }
-                else {
-                    newArray[j++] = this.array[i++];
-                }
+                counter++;
             }
         }
-        if(removed) {
-            this.array = newArray;
-            this.size--;
-            this.index--;
-        }
-        return removed;
+
+        this.array = newArray;
+        this.size--;
+        this.index -= counter;
     }
+
 }
