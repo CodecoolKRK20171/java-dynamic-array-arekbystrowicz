@@ -3,15 +3,18 @@ package com.codecool.dynamicArrayDojo;
 
 public class DynamicIntArray {
 
-    private static final int DEFAULT = 1;
+    // default size of created DIA
+    private static final int DEFAULT_CAP = 1;
+    // new indexes added to DIA when out of space
+    private static final int APPENDED_CAP = 1;
 
     private int[] array;
     private int size;
     private int index;
 
     public DynamicIntArray() {
-        this.array = new int[DEFAULT];
-        this.size = DEFAULT;
+        this.array = new int[DEFAULT_CAP];
+        this.size = DEFAULT_CAP;
         this.index = 0;
     }
 
@@ -32,7 +35,7 @@ public class DynamicIntArray {
 
     public void add(int integer) {
         if(this.isFilled()) {
-            this.addIndexes(1);
+            this.addIndexes(APPENDED_CAP);
         }
         this.array[index++] = integer;
     }
@@ -68,6 +71,7 @@ public class DynamicIntArray {
         this.index -= counter;
     }
 
+    // TODO [null, 1, 1, null, insertion, null]
     public void insert(int index, int integer) {
         if(index >= this.size) {
             this.add(integer);
@@ -80,7 +84,7 @@ public class DynamicIntArray {
                 }
                 newArray[j] = this.array[i];
             }
-            
+
             this.array = newArray;
             this.size += 1;
             this.index += 1;
